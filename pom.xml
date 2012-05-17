@@ -9,7 +9,7 @@
 
   <artifactId>rubyMetrics</artifactId>
   <packaging>hpi</packaging>
-  <version>1.5.1-SNAPSHOT</version>
+  <version>1.5.1-epub-SNAPSHOT</version>
   <name>Jenkins ruby metrics plugin</name>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Ruby+Metrics+Plugin</url>
 
@@ -65,6 +65,13 @@
           <artifactId>jregex</artifactId>
           <version>1.2_01</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>1.10</version>
+    </dependency>
+
   </dependencies>
 
   <build>

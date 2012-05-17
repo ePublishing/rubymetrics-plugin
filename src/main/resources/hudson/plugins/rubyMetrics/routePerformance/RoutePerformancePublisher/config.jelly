@@ -1,0 +1,41 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+
+    <f:entry title="Route Performance Log File" description="relative path to the router performance log file">
+      <f:textbox name="routePerformance.routesPerformanceLogFile" value="${instance.routesPerformanceLogFile}" />
+    </f:entry>
+
+    <f:entry title="Response metric targets"
+             description="
+             Configure health reporting thresholds (in ms). &lt;br/&gt;
+             For the &lt;img src='${rootURL}/images/16x16/health-80plus.gif' alt='100%'&gt;
+             row, leave blank to use the default value (i.e. 500). &lt;br/&gt;
+             For the &lt;img src='${rootURL}/images/16x16/health-00to19.gif' alt='0%'&gt; row,
+             leave blank to use the default values (i.e. 1000).">
+       <table>
+         <tbody>
+         <j:forEach var="inst" items="${descriptor.getTargets(instance)}">
+           <input type="hidden" name="routePerformance.target.metric" value="${inst.metric}"/>
+           <tr>
+             <th>${inst.metric.name}</th>
+             <th>
+               <img src="${rootURL}/images/16x16/health-80plus.gif" alt="100%"
+                    title="Report health as 100% when response time is less than"/>
+             </th>
+             <td>
+               <f:textbox name="routePerformance.target.healthy" value="${inst.healthy}"/>
+             </td>
+             <th>
+               <img src="${rootURL}/images/16x16/health-00to19.gif" alt="0%"
+                    title="Report health as 0% when response time is greater than"/>
+             </th>
+             <td>
+               <f:textbox name="routePerformance.target.unhealthy" value="${inst.unhealthy}"/>
+             </td>
+           </tr>
+         </j:forEach>
+         </tbody>
+       </table>
+    </f:entry>
+
+</j:jelly>

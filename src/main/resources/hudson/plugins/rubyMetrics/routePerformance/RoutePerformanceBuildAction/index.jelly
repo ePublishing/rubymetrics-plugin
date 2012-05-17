@@ -1,0 +1,57 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:routePerformance="/hudson/plugins/rubyMetrics/tags">
+  <l:layout xmlns:routePerformance="/hudson/plugins/rubyMetrics/tags" css="/plugin/rubyMetrics/css/style.css">
+    <st:include it="${it.owner}" page="sidepanel.jelly"/>
+    <l:main-panel>
+      <h1>Route Performance Report</h1>
+      <j:if test="${it.previousResult != null}">
+        <img src="graph" width="500px" height="200px"/>
+      </j:if>
+      <h1>Global Results</h1>
+      <table class="report">
+        <tbody>
+          <tr><td class="heading">Name</td><td class="value">${it.results.name}</td></tr>
+          <tr><td class="heading">Date Time</td><td class="value">${it.results.dateTime}</td></tr>
+          <tr><td class="heading">Total Duration (ms)</td><td class="value">${it.results.totalDuration}</td></tr>
+          <tr><td class="heading">Avg Duration (ms)</td><td class="value">${it.results.avgDuration}</td></tr>
+          <tr><td class="heading">Route Count</td><td class="value">${it.results.routeCount}</td></tr>
+          <tr><td class="heading">Pass Count</td><td class="value">${it.results.passCount}</td></tr>
+          <tr><td class="heading">Fail Count</td><td class="value">${it.results.failCount}</td></tr>
+          <tr><td class="heading">Coverage Percent</td><td class="value">${it.results.coveragePercent}</td></tr>
+          <tr><td class="heading">Total Body Size</td><td class="value">${it.results.totalBodySize}</td></tr>
+        </tbody>
+      </table>
+      <h1>Individual Route Results</h1>
+      <table class="report">
+        <thead>
+          <tr>
+            <td class="heading">URL</td>
+            <td class="heading">Duration (ms)</td>
+            <td class="heading">Verb</td>
+            <td class="heading">Controller</td>
+            <td class="heading">Action</td>
+            <td class="heading">Response Code</td>
+            <td class="heading">Content Type</td>
+            <td class="heading">Format</td>
+            <td class="heading">Body Size</td>
+          </tr>
+        </thead>
+        <tbody>
+          <j:forEach var="res" items="${it.results.results}">
+          <tr>
+            <td>${res.url}</td>
+            <td class="value">${res.duration}</td>
+            <td class="value">${res.verb}</td>
+            <td class="value">${res.controller}</td>
+            <td class="value">${res.action}</td>
+            <td class="value">${res.responseCode}</td>
+            <td class="value">${res.contentType}</td>
+            <td class="value">${res.format}</td>
+            <td class="value">${res.bodySize}</td>
+          </tr>
+          </j:forEach>
+        </tbody>
+      </table>
+    </l:main-panel>
+  </l:layout>
+</j:jelly>

@@ -1,0 +1,71 @@
+--- !omap 
+- :name: "'GET' routes integration test'"
+- :date_time: 2011-02-17 20:32:46.657424 Z
+- :total_duration: 7.54827451705933
+- :avg_duration: 0.0803007927346737
+- :route_count: 4
+- :pass_count: 3
+- :fail_count: 1
+- :coverage_percent: 93.2
+- :total_body_size: 923230
+- :column_names: 
+  - :gloss
+  - :duration
+  - :response_code
+  - :verb
+  - :url
+  - :format
+  - :controller
+  - :action
+  - :success?
+  - :content_type
+  - :body_size
+- :results: 
+  - - "get /articles/:id.html: 200"
+    - 0.289741992950439
+    - 200
+    - :get
+    - /articles/:id
+    - :html
+    - articles
+    - show
+    - true
+    - text/html
+    - 14272
+  - - "get /articles/authors/:id/.html: 200"
+    - 0.0435540676116943
+    - 200
+    - :get
+    - /articles/authors/:id/
+    - :html
+    - articles
+    - authors
+    - true
+    - text/html
+    - 8471
+  - - "get /articles/keyword/:id/.html: 200"
+    - 0.0407071113586426
+    - 200
+    - :get
+    - /articles/keyword/:id/
+    - :html
+    - articles
+    - keyword
+    - true
+    - &id001 !ruby/object:Mime::Type
+      string: text/html
+      symbol: :html
+      synonyms:
+      - application/xhtml+xml
+    - 8656
+  - - "get /articles/log_view/:id/.html: 500"
+    - 0.0185329914093018
+    - 500
+    - :get
+    - /articles/log_view/:id/
+    - :html
+    - articles
+    - log_view
+    - true
+    - text/html
+    - 1
