@@ -1,0 +1,11 @@
+#!/bin/bash
+mkdir -p target &&
+sudo chmod -R 777 target &&
+mvn -e package &&
+sudo /etc/init.d/jenkins stop &&
+sudo rm -fr /var/lib/jenkins/plugins/rubyMetrics /var/lib/jenkins/plugins/rubyMetrics.hpi &&
+sudo cp -a target/rubyMetrics /var/lib/jenkins/plugins/ &&
+sudo cp -a target/rubyMetrics.hpi /var/lib/jenkins/plugins/ &&
+sudo chown -R jenkins:jenkins target/rubyMetrics target/rubyMetrics.hpi &&
+sudo chmod -R g-w target/rubyMetrics target/rubyMetrics.hpi &&
+sudo /etc/init.d/jenkins start
